@@ -17,11 +17,23 @@ const server = http.createServer(function(req, res){
 
     //then get path from url
     const path = parseUrl.pathname;
-    const trimmedPath = path.replace(/^\/+|\?+$/g,'');
+    const trimmedPath = "tirmmedpath" //path.replace(/^\/+|\?+$/g,'');
+
+    // get the query string as an object
+    const queryStringObj = parseUrl.searchParams.entries();
+
+    // log all queries 
+    for (const iterator of queryStringObj) {
+        console.log(iterator);
+    }
+
+    // get http method
+    const method = req.method.toLowerCase();
+
     //then send response
     res.end("Hello World \n");
     //log the request path
-    console.log('Request received on path '+trimmedPath);
+    console.log('Request received on path: '+trimmedPath +' request method is: '+method +' querys are: '+ queryStringObj);
 });
 // Start the server and have it liston port 3000
 server.listen(3000, function(){
